@@ -17,8 +17,9 @@
 #define SSE_WIDTH	4
 #define ALIGNED		__attribute__((aligned(16)))
 
-
+#ifndef NUMTRIES
 #define NUMTRIES	100
+#endif
 
 #ifndef ARRAYSIZE
 #define ARRAYSIZE	1024*1024
@@ -109,7 +110,7 @@ main( int argc, char *argv[ ] )
 	mms = megaMultAdds;
 	speedup = mms/mmn;
 	fprintf( stderr, "(%6.2lf)\n", speedup );
-	//fprintf( stderr, "[ %8.1f , %8.1f , %8.1f ]\n", C[ARRAYSIZE-1], sumn, sums );
+	fprintf( stderr, "[ %8.1f , %8.1f , %8.1f ]\n", C[ARRAYSIZE-1], sumn, sums );
 
 	return 0;
 }
@@ -119,16 +120,16 @@ void
 NonSimdMul( float *A, float *B, float *C, int n )
 {
 	for( int i =0; i < n; i++){
-		C[i] = A[i] * B[i]
+		C[i] = A[i] * B[i];
 	}
 }
 
 float
 NonSimdMulSum( float *A, float *B, int n )
 {
-	float sum = 0
+	float sum = 0;
 	for( int i =0; i < n; i++){
-		sum = A[i] * B[i] + sum
+		sum = A[i] * B[i] + sum;
 	}
 
 }
