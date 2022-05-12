@@ -131,6 +131,7 @@ NonSimdMulSum( float *A, float *B, int n )
 	for( int i =0; i < n; i++){
 		sum = A[i] * B[i] + sum;
 	}
+	return sum;
 
 }
 
